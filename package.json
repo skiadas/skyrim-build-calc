@@ -6,6 +6,7 @@
     "scripts": {
         "test": "jest",
         "test:watch": "jest --watch",
+        "cypress:open": "cypress open",
         "prettier-watch": "onchange \"**/*\" -- prettier --write --ignore-unknown {{changed}}",
         "lint": "npx eslint ./app/",
         "lint:watch": "npx esw --ext .js,.ts ./app --watch",
@@ -32,6 +33,7 @@
         "babel-preset-env": "^1.7.0",
         "css-loader": "^6.7.2",
         "cssnano": "^5.1.14",
+        "cypress": "^11.2.0",
         "eslint": "^8.28.0",
         "eslint-config-airbnb-base": "^15.0.0",
         "eslint-config-prettier": "^8.5.0",
