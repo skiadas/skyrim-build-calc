@@ -6,6 +6,8 @@
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
         "prettier-watch": "onchange \"**/*\" -- prettier --write --ignore-unknown {{changed}}",
+        "lint": "npx eslint ./app/",
+        "lint:watch": "npx esw --ext .js,.ts ./app --watch",
         "server": "webpack serve",
         "build": "webpack"
     },
@@ -22,8 +24,16 @@
     "homepage": "https://github.com/skiadas/skyrim-build-calc#readme",
     "devDependencies": {
         "@babel/core": "^7.20.2",
+        "@typescript-eslint/eslint-plugin": "^5.44.0",
+        "@typescript-eslint/parser": "^5.44.0",
         "babel-loader": "^9.1.0",
         "babel-preset-env": "^1.7.0",
+        "eslint": "^8.28.0",
+        "eslint-config-airbnb-base": "^15.0.0",
+        "eslint-config-prettier": "^8.5.0",
+        "eslint-plugin-import": "^2.26.0",
+        "eslint-plugin-prettier": "^4.2.1",
+        "eslint-watch": "^8.0.0",
         "html-webpack-plugin": "^5.5.0",
         "onchange": "^7.1.0",
         "prettier": "2.8.0",
