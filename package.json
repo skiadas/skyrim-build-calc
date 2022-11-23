@@ -16,5 +16,10 @@
   "bugs": {
     "url": "https://github.com/skiadas/skyrim-build-calc/issues"
   },
-  "homepage": "https://github.com/skiadas/skyrim-build-calc#readme"
+  "homepage": "https://github.com/skiadas/skyrim-build-calc#readme",
+  "devDependencies": {
+    "@babel/core": "^7.20.2",
+    "babel-loader": "^9.1.0",
+    "babel-preset-env": "^1.7.0"
+  }
 }
