@@ -9,8 +9,9 @@
         "typeRoots": ["./assets/js/types", "node_modules/@types"],
         "moduleResolution": "node",
         "allowSyntheticDefaultImports": true,
+        "jsx": "react-jsx",
         "lib": ["es2019", "dom", "dom.iterable"]
     },
     "moduleDirectories": ["node_modules", "assets"],
-    "exclude": ["./node_modules", "./public"]
+    "exclude": ["./node_modules", "./public", "**/*.test.ts"]
 }

@@ -6,7 +6,7 @@ module.exports = (env) => ({
     mode: 'development',
     context: path.join(__dirname, 'app'),
     entry: {
-        app: './js/app.ts',
+        app: './js/app.tsx',
         styles: './css/main.pcss'
     },
     output: {
@@ -15,15 +15,18 @@ module.exports = (env) => ({
         publicPath: './',
         pathinfo: false
     },
+    resolve: {
+        extensions: ['.ts', '.tsx', '.js', '.jsx']
+    },
     module: {
         rules: [
             {
-                test: /\.js$/,
+                test: /\.jsx?$/,
                 exclude: /node_modules/,
                 use: ['babel-loader']
             },
             {
-                test: /\.ts$/,
+                test: /\.tsx?$/,
                 exclude: /node_modules/,
                 use: ['ts-loader']
             },
