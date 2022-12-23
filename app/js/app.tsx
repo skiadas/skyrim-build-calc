@@ -1,14 +1,16 @@
+/* eslint-disable no-console */
 import { createRoot } from 'react-dom/client';
-import Hello from './Hello';
+import SkillTree from './perk/SkillTree';
 
 const container = document.getElementById('root');
-if (container != null) {
-    const root = createRoot(container);
-    root.render(<Hello />);
-} else {
-    // Page won't really load
+
+function myFunction(): void {
+    console.log('Changed!');
 }
 
-export default function sum(a: number, b: number): number {
-    return a + b;
+if (container != null) {
+    const root = createRoot(container);
+    root.render(<SkillTree name="aName" minLevel={15} level={20} myHandler={myFunction} />);
+} else {
+    // Page won't really load
 }
