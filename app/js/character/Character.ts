@@ -1,14 +1,24 @@
 import { AllPerks, PerkList } from '../perk/PerkList';
-import Skill from '../perk/Skill';
+import { Skill, newSkill } from '../perk/Skill';
 import { baseStatsFor, Race } from './Race';
 import {} from './XpCalculation';
 
-export default class Character {
+export interface Character {
     skills: AllPerks<Skill>;
+    race: Race;
+}
 
-    constructor(race: Race, skills: AllPerks<number>) {
-        this.skills = makeSkillsFromLevels(skills, baseStatsFor(race));
-    }
+export function baseCharacter(race?: Race): Character {
+    const finalRace = race || Race.ALTMER;
+
+    return newCharacter(finalRace, baseStatsFor(finalRace));
+}
+
+export function newCharacter(race: Race, skills: AllPerks<number>): Character {
+    return {
+        race,
+        skills: makeSkillsFromLevels(skills, baseStatsFor(race))
+    };
 }
 
 function makeSkillsFromLevels(
@@ -18,7 +28,7 @@ function makeSkillsFromLevels(
     const result: Partial<AllPerks<Skill>> = {};
     for (const key of Object.keys(PerkList)) {
         const perk = key as PerkList;
-        result[perk] = new Skill(perk, skillLevels[perk], baseStats[perk]);
+        result[perk] = newSkill(perk, skillLevels[perk], baseStats[perk]);
     }
     return result as AllPerks<Skill>;
 }

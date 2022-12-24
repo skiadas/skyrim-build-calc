@@ -1,4 +1,4 @@
-import Character from './Character';
+import { Character, newCharacter } from './Character';
 
 describe('Name of the group', () => {
     it('should ', () => {

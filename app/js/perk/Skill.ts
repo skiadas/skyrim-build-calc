@@ -1,20 +1,19 @@
 const fXPPerSkillRank = 1;
 
-export default class Skill {
+export interface Skill {
     name: string;
     points: number;
     startPoints: number;
+}
 
-    constructor(name: string, points: number, startPoints: number) {
-        this.name = name;
-        this.points = points;
-        this.startPoints = startPoints;
-    }
+export function newSkill(name: string, points: number, startPoints: number): Skill {
+    return { name, points, startPoints };
+}
 
-    grantedXp(): number {
-        if (this.points <= this.startPoints) return 0;
-        const numLevelUps = this.points - this.startPoints;
-        const avgXp = (fXPPerSkillRank * (this.points + this.startPoints + 1)) / 2;
-        return numLevelUps * avgXp;
-    }
+export function grantedXp(skill: Skill): number {
+    const { points, startPoints } = skill;
+    if (points <= startPoints) return 0;
+    const numLevelUps = points - startPoints;
+    const avgXp = (fXPPerSkillRank * (points + startPoints + 1)) / 2;
+    return numLevelUps * avgXp;
 }
