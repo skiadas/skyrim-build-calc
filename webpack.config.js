@@ -3,6 +3,9 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = (env) => ({
+    devServer: {
+        hot: true
+    },
     mode: 'development',
     context: path.join(__dirname, 'app'),
     entry: {
