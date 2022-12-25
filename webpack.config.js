@@ -3,8 +3,15 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = (env) => ({
+    target: 'web',
     devServer: {
-        hot: true
+        open: true,
+        hot: false,
+        liveReload: true,
+        client: {
+            overlay: true,
+            progress: true
+        }
     },
     mode: 'development',
     context: path.join(__dirname, 'app'),

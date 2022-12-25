@@ -1,7 +1,7 @@
 import { FC, Fragment, ReactNode } from 'react';
 
 import useCharacterReducer from './character/CharacterReducer';
-import { PerkList } from './perk/PerkList';
+import { allPerks } from './perk/PerkList';
 import { Skill } from './perk/Skill';
 import SkillTree from './perk/SkillTree';
 
@@ -17,7 +17,7 @@ function makeSkillTree(skill: Skill): ReactNode {
 const Main: FC<unknown> = () => {
     const [character, dispatch] = useCharacterReducer();
     const { skills } = character;
-    const items = Object.keys(skills).map((name) => makeSkillTree(skills[name as PerkList]));
+    const items = allPerks.map((perk) => makeSkillTree(skills[perk]));
 
     return (
         <div>

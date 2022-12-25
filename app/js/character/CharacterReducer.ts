@@ -1,12 +1,23 @@
 import { Dispatch, Reducer, ReducerAction, ReducerState, useReducer } from 'react';
-import { baseCharacter, Character } from './Character';
+import { PerkList } from '../perk/PerkList';
+import { baseCharacter, Character, updateCharacter, updateRace } from './Character';
+import { Race } from './Race';
 
-type Action = Record<string, never>;
+type Action =
+    | { type: 'update-skill'; skill: PerkList; value: number }
+    | { type: 'change-race'; race: Race };
 
 type MyReducer = Reducer<Character, Action>;
 
 function reducer(state: Character, action: Action): Character {
-    return state;
+    switch (action.type) {
+        case 'update-skill':
+            return updateCharacter(state, action.skill, action.value);
+        case 'change-race':
+            return updateRace(state, action.race);
+        default:
+            return state;
+    }
 }
 
 export default function useCharacterReducer(): [

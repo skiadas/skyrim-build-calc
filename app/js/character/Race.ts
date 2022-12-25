@@ -1,4 +1,4 @@
-import { AllPerks, PerkList } from '../perk/PerkList';
+import { AllPerks, PerkList, simplePerks } from '../perk/PerkList';
 
 export enum Race {
     ALTMER = 'Altmer',
@@ -17,26 +17,7 @@ type PerkChange = {
     [key in PerkList]?: number;
 };
 
-const defaultStats: AllPerks<number> = {
-    [PerkList.SMITHING]: 15,
-    [PerkList.HEAVY_ARMOR]: 15,
-    [PerkList.BLOCK]: 15,
-    [PerkList.TWO_HANDED]: 15,
-    [PerkList.ONE_HANDED]: 15,
-    [PerkList.ARCHERY]: 15,
-    [PerkList.LIGHT_ARMOR]: 15,
-    [PerkList.SNEAK]: 15,
-    [PerkList.LOCKPICKING]: 15,
-    [PerkList.PICKPOCKET]: 15,
-    [PerkList.SPEECH]: 15,
-    [PerkList.ALCHEMY]: 15,
-    [PerkList.ILLUSION]: 15,
-    [PerkList.CONJURATION]: 15,
-    [PerkList.DESTRUCTION]: 15,
-    [PerkList.RESTORATION]: 15,
-    [PerkList.ALTERATION]: 15,
-    [PerkList.ENCHANTING]: 15
-};
+const defaultStats: AllPerks<number> = simplePerks(() => 15);
 
 const perkChangesPerRace: {
     [key in Race]: PerkChange;
