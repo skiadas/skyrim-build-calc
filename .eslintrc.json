@@ -34,7 +34,6 @@
         "node": true,
         "jest": true
     },
-    "ignorePatterns": ["**/*.test.ts"],
     "rules": {
         "camelcase": "off",
         "import/extensions": "off",

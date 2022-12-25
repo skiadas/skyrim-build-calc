@@ -4,26 +4,26 @@ import { baseCharacter, Character, updateCharacter, updateRace } from './Charact
 import { RaceType } from './Race';
 
 type Action =
-    | { type: 'update-skill'; skill: SkillType; value: number }
-    | { type: 'change-race'; race: RaceType };
+  | { type: 'update-skill'; skill: SkillType; value: number }
+  | { type: 'change-race'; race: RaceType };
 
 type MyReducer = Reducer<Character, Action>;
 
 function reducer(state: Character, action: Action): Character {
-    switch (action.type) {
-        case 'update-skill':
-            return updateCharacter(state, action.skill, action.value);
-        case 'change-race':
-            return updateRace(state, action.race);
-        default:
-            return state;
-    }
+  switch (action.type) {
+    case 'update-skill':
+      return updateCharacter(state, action.skill, action.value);
+    case 'change-race':
+      return updateRace(state, action.race);
+    default:
+      return state;
+  }
 }
 
 export default function useCharacterReducer(): [
-    ReducerState<MyReducer>,
-    Dispatch<ReducerAction<MyReducer>>
+  ReducerState<MyReducer>,
+  Dispatch<ReducerAction<MyReducer>>
 ] {
-    const [state, dispatch] = useReducer(reducer, baseCharacter());
-    return [state, dispatch];
+  const [state, dispatch] = useReducer(reducer, baseCharacter());
+  return [state, dispatch];
 }
