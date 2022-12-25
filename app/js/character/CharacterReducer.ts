@@ -1,11 +1,11 @@
 import { Dispatch, Reducer, ReducerAction, ReducerState, useReducer } from 'react';
-import { PerkList } from '../perk/PerkList';
+import { SkillType } from '../perk/SkillType';
 import { baseCharacter, Character, updateCharacter, updateRace } from './Character';
-import { Race } from './Race';
+import { RaceType } from './Race';
 
 type Action =
-    | { type: 'update-skill'; skill: PerkList; value: number }
-    | { type: 'change-race'; race: Race };
+    | { type: 'update-skill'; skill: SkillType; value: number }
+    | { type: 'change-race'; race: RaceType };
 
 type MyReducer = Reducer<Character, Action>;
 

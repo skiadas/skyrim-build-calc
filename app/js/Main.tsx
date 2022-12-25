@@ -1,15 +1,15 @@
 import { FC, Fragment, ReactNode } from 'react';
 
 import useCharacterReducer from './character/CharacterReducer';
-import { allPerks } from './perk/PerkList';
-import { Skill } from './perk/Skill';
+import { allSkills, SkillType } from './perk/SkillType';
+import { SkillLevel } from './perk/SkillLevel';
 import SkillTree from './perk/SkillTree';
 
-function makeSkillTree(skill: Skill): ReactNode {
-    const { name, points, startPoints } = skill;
+function makeSkillTree(name: SkillType, skill: SkillLevel): ReactNode {
+    const { level, startLevel } = skill;
     return (
         <Fragment key={name}>
-            <SkillTree name={name} level={points} minLevel={startPoints} myHandler={() => {}} />
+            <SkillTree name={name} level={level} minLevel={startLevel} myHandler={() => {}} />
         </Fragment>
     );
 }
@@ -17,7 +17,7 @@ function makeSkillTree(skill: Skill): ReactNode {
 const Main: FC<unknown> = () => {
     const [character, dispatch] = useCharacterReducer();
     const { skills } = character;
-    const items = allPerks.map((perk) => makeSkillTree(skills[perk]));
+    const items = allSkills.map((skill) => makeSkillTree(skill, skills[skill]));
 
     return (
         <div>
