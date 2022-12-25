@@ -22,13 +22,17 @@ export const Skill = {
 export type SkillType = typeof Skill[keyof typeof Skill];
 
 export type PerSkill<T> = {
-  [key in SkillType]: T;
+  readonly [key in SkillType]: T;
+};
+
+type PartialPerSkill<T> = {
+  [key in SkillType]?: T;
 };
 
 export const allSkills = Object.values(Skill) as SkillType[];
 
 export function fromFunction<T>(f: (p: SkillType) => T): PerSkill<T> {
-  const xs = {} as Partial<PerSkill<T>>;
+  const xs = {} as PartialPerSkill<T>;
   allSkills.forEach((skill) => {
     xs[skill] = f(skill);
   });
@@ -42,7 +46,7 @@ export function mapPerSkill<T, S>(xs: PerSkill<T>, f: (x: T, skill: SkillType) =
 export function mapPerSkill2<T, S, R>(
   xs: PerSkill<T>,
   ys: PerSkill<S>,
-  f: (t: T, s: S, skill: SkillType) => R
+  f: (x: T, y: S, skill: SkillType) => R
 ): PerSkill<R> {
   return fromFunction((skill) => f(xs[skill], ys[skill], skill));
 }
