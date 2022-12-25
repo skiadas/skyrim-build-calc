@@ -1,4 +1,5 @@
-import { PerSkill, Skill, SkillType, fromFunction } from '../perk/SkillType';
+import { fromFunction, PerSkill } from '../perk/PerSkill';
+import { Skill, SkillType } from '../perk/SkillType';
 
 export const Race = {
   ALTMER: 'Altmer',

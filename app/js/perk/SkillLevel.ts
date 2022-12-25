@@ -9,6 +9,10 @@ export function newSkillLevel(level: number, startLevel: number): SkillLevel {
   return { level, startLevel };
 }
 
+export function getCurrentLevel({ level }: SkillLevel): number {
+  return level;
+}
+
 // Updates level to new value unless less than startLevel
 export function updateSkill(skill: SkillLevel, newPoints: number): SkillLevel {
   const { startLevel } = skill;

@@ -1,6 +1,6 @@
 import { Skill } from '../perk/SkillType';
-import { updateCharacter, baseCharacter, updateRace, getSkill } from './Character';
 import { Race } from './Race';
+import { updateCharacter, baseCharacter, updateRace, getSkill } from './Character';
 
 describe('Character based on race', () => {
   it('has race-specific skill level', () => {
@@ -10,7 +10,7 @@ describe('Character based on race', () => {
     expect(getSkill(character, Skill.DESTRUCTION).startLevel).toEqual(15);
   });
   it('defaults to altmer', () => {
-    const character = baseCharacter();
+    const character = baseCharacter(Race.ALTMER);
     expect(character.race).toEqual(Race.ALTMER);
     expect(character.skills).toHaveProperty(Skill.ALCHEMY);
     expect(getSkill(character, Skill.ALCHEMY).startLevel).toEqual(15);
@@ -20,7 +20,7 @@ describe('Character based on race', () => {
 
 describe('Update character method', () => {
   it('returns new character with correct value', () => {
-    const ch1 = baseCharacter();
+    const ch1 = baseCharacter(Race.ALTMER);
     const ch2 = updateCharacter(ch1, Skill.ALCHEMY, 30);
     expect(ch2).not.toEqual(ch1);
     expect(getSkill(ch2, Skill.ALCHEMY).level).toEqual(30);

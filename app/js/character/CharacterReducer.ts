@@ -1,7 +1,7 @@
 import { Dispatch, Reducer, ReducerAction, ReducerState, useReducer } from 'react';
 import { SkillType } from '../perk/SkillType';
 import { baseCharacter, Character, updateCharacter, updateRace } from './Character';
-import { RaceType } from './Race';
+import { Race, RaceType } from './Race';
 
 type Action =
   | { type: 'update-skill'; skill: SkillType; value: number }
@@ -24,6 +24,6 @@ export default function useCharacterReducer(): [
   ReducerState<MyReducer>,
   Dispatch<ReducerAction<MyReducer>>
 ] {
-  const [state, dispatch] = useReducer(reducer, baseCharacter());
+  const [state, dispatch] = useReducer(reducer, baseCharacter(Race.ALTMER));
   return [state, dispatch];
 }
