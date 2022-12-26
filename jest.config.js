@@ -1,7 +1,10 @@
 /** @type {import('ts-jest').JestConfigWithTsJest} */
 module.exports = {
-    preset: 'ts-jest',
-    testEnvironment: 'node',
-    collectCoverage: true,
-    coverageReporters: ['json', 'html']
+  preset: 'ts-jest',
+  testEnvironment: 'node',
+  collectCoverage: true,
+  coverageReporters: ['json', 'html'],
+  moduleNameMapper: {
+    '\\.(css|scss)$': 'identity-obj-proxy'
+  }
 };
