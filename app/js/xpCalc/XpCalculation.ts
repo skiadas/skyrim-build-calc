@@ -1,3 +1,5 @@
+import { accumulate, PerSkill } from '../perk/PerSkill';
+import { grantedXp, SkillLevel } from '../perk/SkillLevel';
 import xpNeededPerLevel from './xpPerLevel';
 
 const XPLevelUpBase = 75;
@@ -30,4 +32,12 @@ export function getLevelSpecForXp(xp: number): LevelSpec {
     xpForNext: totalXpForNext - totalXpForCurr,
     xpAtLevel: xp - totalXpForCurr
   };
+}
+
+function calculateXp(skills: PerSkill<SkillLevel>): number {
+  return accumulate(skills, 0, (xp: number, skill: SkillLevel) => xp + grantedXp(skill));
+}
+
+export function getLevelSpecForSkills(skills: PerSkill<SkillLevel>): LevelSpec {
+  return getLevelSpecForXp(calculateXp(skills));
 }

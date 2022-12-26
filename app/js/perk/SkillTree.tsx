@@ -1,4 +1,5 @@
-import { ChangeEventHandler, FC } from 'react';
+import { FC } from 'react';
+import { Slider } from '@adobe/react-spectrum';
 
 const MAX_LEVEL = 100;
 
@@ -6,25 +7,20 @@ interface TreeProps {
   name: string;
   level: number;
   minLevel: number;
-  myHandler: ChangeEventHandler;
+  onLevelChange: (level: number) => void;
 }
 
-const SkillTree: FC<TreeProps> = (props) => {
-  const inputName = `skill-tree-${props.name}`;
-  return (
-    <div>
-      <label htmlFor={inputName}>{props.name}</label>
-      <input
-        id={inputName}
-        name={inputName}
-        type="number"
-        min={props.minLevel}
-        max={MAX_LEVEL}
-        value={props.level}
-        onChange={props.myHandler}
-      />
-    </div>
-  );
-};
+export const SkillTree: FC<TreeProps> = (props: TreeProps) => (
+  <Slider
+    label={props.name}
+    value={props.level}
+    minValue={props.minLevel}
+    maxValue={MAX_LEVEL}
+    width="size-1600"
+    height="size-800"
+    isFilled={true}
+    onChange={props.onLevelChange}
+  />
+);
 
 export default SkillTree;

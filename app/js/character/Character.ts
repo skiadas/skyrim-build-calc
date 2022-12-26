@@ -1,5 +1,5 @@
 import { SkillType } from '../perk/SkillType';
-import { SkillLevel, updateSkill } from '../perk/SkillLevel';
+import { grantedXp, SkillLevel, updateSkill } from '../perk/SkillLevel';
 import { baseStatsFor, RaceType } from './Race';
 import { makeSkillsFromLevels, mapPerSkill2, PerSkill, getCurrentLevels } from '../perk/PerSkill';
 

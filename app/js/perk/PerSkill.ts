@@ -39,3 +39,11 @@ export function mapPerSkill2<T, S, R>(
 export function getCurrentLevels(skills: PerSkill<SkillLevel>): PerSkill<number> {
   return mapPerSkill(skills, getCurrentLevel);
 }
+
+export function accumulate<T, S>(skills: PerSkill<T>, initial: S, acc: (s: S, t: T) => S): S {
+  let total = initial;
+  allSkills.forEach((sk) => {
+    total = acc(total, skills[sk]);
+  });
+  return total;
+}

@@ -15,6 +15,7 @@ export const Race = {
 } as const;
 
 export type RaceType = typeof Race[keyof typeof Race];
+export const raceList = Object.values(Race) as RaceType[];
 
 type PerkChange = {
   [key in SkillType]?: number;
