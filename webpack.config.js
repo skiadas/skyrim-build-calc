@@ -1,6 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = (env) => ({
   target: 'web',
@@ -43,6 +44,10 @@ module.exports = (env) => ({
       {
         test: /\.css$/i,
         use: ['style-loader', 'css-loader']
+      },
+      {
+        test: /\.(png|svg|jpg|jpeg|gif|webp)$/i,
+        type: 'asset/resource'
       }
     ]
   },
@@ -54,6 +59,9 @@ module.exports = (env) => ({
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, 'app/index.html'),
       inject: 'body'
+    }),
+    new CopyWebpackPlugin({
+      patterns: [{ from: 'static' }]
     })
   ]
 });

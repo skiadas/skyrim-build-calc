@@ -5,6 +5,8 @@ export type PerSkill<T> = {
   readonly [key in SkillType]: T;
 };
 
+export type CharSkills = PerSkill<SkillLevel>;
+
 type PartialPerSkill<T> = {
   [key in SkillType]?: T;
 };

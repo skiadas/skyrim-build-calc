@@ -12,6 +12,7 @@ export interface CharacterInfoProps {
 export default function CharacterInfo(props: CharacterInfoProps): JSX.Element {
   const raceChoices = raceList.map((race) => <Item key={race}>{race}</Item>);
   const { level, xpAtLevel, xpForNext } = getLevelSpecForSkills(props.character.skills);
+  const numPerks = props.character.perks.length;
   return (
     <Flex direction="row" gap="size-300">
       <ComboBox
@@ -31,6 +32,12 @@ export default function CharacterInfo(props: CharacterInfoProps): JSX.Element {
         value={xpAtLevel}
         maxValue={xpForNext}
         minValue={0}
+      />
+      <LabeledValue
+        label="Perks"
+        labelPosition="side"
+        alignSelf="center"
+        value={`${numPerks}/${level - 1}`}
       />
     </Flex>
   );

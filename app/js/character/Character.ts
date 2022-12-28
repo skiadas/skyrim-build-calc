@@ -1,11 +1,18 @@
 import { SkillType } from '../perk/SkillType';
-import { grantedXp, SkillLevel, updateSkill } from '../perk/SkillLevel';
+import { SkillLevel, updateSkill } from '../perk/SkillLevel';
 import { baseStatsFor, RaceType } from './Race';
-import { makeSkillsFromLevels, mapPerSkill2, PerSkill, getCurrentLevels } from '../perk/PerSkill';
+import {
+  makeSkillsFromLevels,
+  mapPerSkill2,
+  PerSkill,
+  getCurrentLevels,
+  CharSkills
+} from '../perk/PerSkill';
+import { PerkSpec } from '../perk/PerkSpec';
 
-export interface Character {
-  readonly skills: PerSkill<SkillLevel>;
+export interface Character extends PerkSpec {
   readonly race: RaceType;
+  readonly skills: CharSkills;
 }
 
 export function baseCharacter(race: RaceType): Character {
@@ -17,17 +24,18 @@ export function baseCharacter(race: RaceType): Character {
 export function newCharacter(race: RaceType, levels: PerSkill<number>): Character {
   return {
     race,
-    skills: makeSkillsFromLevels(levels, baseStatsFor(race))
+    skills: makeSkillsFromLevels(levels, baseStatsFor(race)),
+    perks: []
   };
 }
 
-function makeBaseSkillsFor(race: RaceType): PerSkill<SkillLevel> {
+function makeBaseSkillsFor(race: RaceType): CharSkills {
   const baseStats = baseStatsFor(race);
   return makeSkillsFromLevels(baseStats, baseStats);
 }
 
 export function updateCharacter(
-  { race, skills }: Character,
+  { race, skills, perks }: Character,
   skill: SkillType,
   newValue: number
 ): Character {
@@ -36,7 +44,8 @@ export function updateCharacter(
     skills: {
       ...skills,
       ...{ [skill]: updateSkill(skills[skill], newValue) }
-    }
+    },
+    perks
   };
 }
 
@@ -44,9 +53,10 @@ export function getSkill({ skills }: Character, name: SkillType): SkillLevel {
   return skills[name];
 }
 
-export function updateRace({ skills }: Character, race: RaceType): Character {
+export function updateRace({ skills, perks }: Character, race: RaceType): Character {
   return {
     race,
-    skills: mapPerSkill2(makeBaseSkillsFor(race), getCurrentLevels(skills), updateSkill)
+    skills: mapPerSkill2(makeBaseSkillsFor(race), getCurrentLevels(skills), updateSkill),
+    perks
   };
 }
